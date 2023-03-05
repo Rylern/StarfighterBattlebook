@@ -1,0 +1,1 @@
+target_include_directories(Ui PUBLIC ${PROJECT_SOURCE_DIR}/ui/include)

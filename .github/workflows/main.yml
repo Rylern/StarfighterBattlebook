@@ -1,0 +1,82 @@
+name: starfighter_battlebook
+on:
+  push:
+    tags:        
+      - '*'
+
+permissions:
+  contents: write
+
+env:
+  config: release  # or debug
+
+jobs:
+  build:
+    name: Build for ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        include:
+          - os: ubuntu-latest
+            name: Linux
+          - os: macos-latest
+            name: MacOS
+          - os: windows-latest
+            name: Windows
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Install system dependencies for Ubuntu
+        if: matrix.os == 'ubuntu-latest'
+        run: sudo apt-get -y install autoconf libtool libx11-dev libxrandr-dev libxi-dev libudev-dev libgl1-mesa-dev
+
+      - name: Install latest CMake and Ninja
+        uses: lukka/get-cmake@latest
+
+      - name: Restore artifacts, or setup vcpkg for building artifacts
+        uses: lukka/run-vcpkg@v10
+        with:
+          vcpkgGitCommitId: 223d33be7d3ec6c3d64381ca37f501b8c87dda6a
+
+      - name: Run CMake+vcpkg+Ninja to generate/build
+        uses: lukka/run-cmake@v10
+        with:
+          configurePreset: '${{ env.config }}'
+          buildPreset: '${{ env.config }}'
+          buildPresetAdditionalArgs: '[`--target install`, `--config ${{ env.config }}`]'
+        env:
+          VCPKG_FORCE_SYSTEM_BINARIES: 1
+
+      - name: Create Zip files (Linux and MacOS)
+        if: matrix.os == 'ubuntu-latest' || matrix.os == 'macos-latest'
+        run: |
+          pushd bin/StarfighterBattlebook
+          zip -qr ../../StarfighterBattlebook-${{ matrix.name }}.zip .
+          popd
+          pushd bin/StarfighterBattlebookServer
+          zip -qr ../../StarfighterBattlebookServer-${{ matrix.name }}.zip .
+          popd
+
+      - name: Create Zip files (Windows)
+        if: matrix.os == 'windows-latest'
+        run: |
+          pushd bin\StarfighterBattlebook
+          7z a ..\..\StarfighterBattlebook-${{ matrix.name }}.zip .
+          popd
+          pushd bin\StarfighterBattlebookServer
+          7z a ..\..\StarfighterBattlebookServer-${{ matrix.name }}.zip .
+          popd
+
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            StarfighterBattlebook-${{ matrix.name }}.zip
+            StarfighterBattlebookServer-${{ matrix.name }}.zip
+          draft: false
+          prerelease: false
+          generate_release_notes: true

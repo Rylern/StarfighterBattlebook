@@ -1,0 +1,18 @@
+if (WIN32)
+    add_executable(StarfighterBattlebook WIN32 main.cpp uicontroller.cpp client.cpp mainmenu.cpp waitingforplayers.cpp joingame.cpp teamselection.cpp game.cpp endgame.cpp soundmanager.cpp)
+else()
+    add_executable(StarfighterBattlebook main.cpp uicontroller.cpp client.cpp mainmenu.cpp waitingforplayers.cpp joingame.cpp teamselection.cpp game.cpp endgame.cpp soundmanager.cpp)
+endif()
+
+if(APPLE)
+    find_library(AUDIO_UNIT AudioUnit)
+    find_library(CORE_AUDIO CoreAudio)
+    find_library(AUDIO_TOOLBOX AudioToolbox)
+    target_link_libraries(StarfighterBattlebook PRIVATE sfml-audio sfml-network sfml-graphics sfml-window sfml-system Threads::Threads ${AUDIO_UNIT} ${CORE_AUDIO} ${AUDIO_TOOLBOX})
+elseif(WIN32)
+    target_link_libraries(StarfighterBattlebook PRIVATE sfml-audio sfml-network sfml-graphics sfml-window sfml-system sfml-main Threads::Threads)
+else()
+    target_link_libraries(StarfighterBattlebook PRIVATE sfml-audio sfml-network sfml-graphics sfml-window sfml-system Threads::Threads)
+endif()
+
+install(TARGETS StarfighterBattlebook DESTINATION StarfighterBattlebook)
