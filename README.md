@@ -32,7 +32,7 @@ The game is a **C++** application using:
 * The [Simple and Fast Multimedia Library (SFML)](https://www.sfml-dev.org/index-fr.php) library for everything related to graphics, audio, and network.
 * [Cmake](https://cmake.org/) for the compilation process.
 * [vcpkg](https://vcpkg.io/en/index.html) for acquiring and managing libraries (which actually only consists of SFML).
-* [GitHub Actions](https://docs.github.com/en/actions) for automatically deploying and releasing the application.
+* [GitHub Actions](https://docs.github.com/en/actions) and [run-cmake](https://github.com/marketplace/actions/run-cmake) for automatically deploying and releasing the application.
 
 The game also use images of the *Star Wars: Starfighter Battle Book*, and sound effects and musics of the original *Star Wars* trilogy. As I don't own any rights on these resources, I can unpublish them if requested.
 
