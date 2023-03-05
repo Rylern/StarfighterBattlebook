@@ -18,11 +18,11 @@ As the book has become quite rare and expensive, I created a video game version 
 The game uses the client-server architecture, which means that one of the player will have to **host** the game, and the other player will have to **join** the hosted game.
 
 * To play locally (on the same network):
-    * One player has to host the game by clicking on *Host game*. He then needs to find his local IP address. You can find instructions on how to get the local IP address on this [link](https://www.med.unc.edu/it/guide/operating-systems/how-do-i-find-the-host-name-ip-address-or-physical-address-of-my-machine/) for Windows, and [here](https://www.ionos.com/digitalguide/hosting/technical-matters/get-linux-ip-address/) for Linux and MacOS (on the *Displaying a private IP address in Linux* part).
+    * One player has to host the game by clicking on *Host game*. He/she then needs to find his/her local IP address. You can find instructions on how to get the local IP address on this [link](https://www.med.unc.edu/it/guide/operating-systems/how-do-i-find-the-host-name-ip-address-or-physical-address-of-my-machine/) for Windows, and [here](https://www.ionos.com/digitalguide/hosting/technical-matters/get-linux-ip-address/) for Linux and MacOS (on the *Displaying a private IP address in Linux* part).
     * The other player has to join the previously hosted game, by clicking on *Join game*, writing the local IP address of the host, and clicking on *Connect*.
 * To play online (on a different network):
     * One player has to set up port forwarding on his/her router. The procedure depends on each router, but you can find instructions [here](https://www.belkin.com/support-article/?articleNum=10790). The port to forward is **55001** (**TCP**). Port forwarding may also have to been done on the firewall of the host computer.
-    * The player who set up port forwarding has to host the game by clicking on *Host game*. He then has to find his/her IPv4 address by visiting [this website](https://whatismyipaddress.com/) for example.
+    * The player who set up port forwarding has to host the game by clicking on *Host game*. He/she then has to find his/her IPv4 address by visiting [this website](https://whatismyipaddress.com/) for example.
     * The other player has to join the previously hosted game, by clicking on *Join game*, writing the IP address of the host, and clicking on *Connect*.
 
 You also have the possibility to host a game from a remote server. To do this, grab the _StarfighterBattlebookServer-*.zip_ file from the latest release and run the *StarfighterBattlebookServer* file from a console. On this server, you also have to set up port forwarding as described above.
