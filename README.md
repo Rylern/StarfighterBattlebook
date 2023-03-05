@@ -8,7 +8,7 @@ As the book has become quite rare and expensive, I created a video game version 
 
 ## Installation
 
-* Go to the latest [release page](https://github.com/Rylern/test/releases/latest), download and unzip one of the file corresponding to your operating system:
+* Go to the latest [release page](https://github.com/Rylern/StarfighterBattlebook/releases/latest), download and unzip one of the file corresponding to your operating system:
     * *StarfighterBattlebook-Linux.zip* for Linux.
     * *StarfighterBattlebook-Windows.zip* for Windows.
     * *StarfighterBattlebook-MacOS.zip* for MacOS.
